@@ -238,8 +238,10 @@ if [ "$system_type" = "Darwin" ]; then
 else
   # Linux
   # 
-  alias fd="fdfind" ##os.Linux
-  # SSH Key os.Linux
+  alias fd="fdfind"
+  alias open="xdg-open"
+
+  # SSH Key
   #
   # if [ -z "$SSH_AUTH_SOCK" ] ; then
     # eval `ssh-agent -s`
