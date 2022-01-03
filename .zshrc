@@ -240,6 +240,7 @@ else
   # 
   alias fd="fdfind"
   alias open="xdg-open"
+  alias bat="batcat"
 
   # SSH Key
   #
