@@ -1,0 +1,17 @@
+// ~/.config/nvim/coc-settings.json
+{
+  "suggest.noselect": false,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "graphql",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "typescript",
+    "typescript.tsx",
+    "typescriptreact"
+  ],
+	"prettier.trailingComma": "es5",
+	"prettier.semi": false,
+	"prettier.singleQuote": true,
+  "coc.preferences.colorSupport": true
+}
