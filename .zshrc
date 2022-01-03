@@ -1,14 +1,16 @@
 # ~/.zshrc
+#
  
 # Load Homebrew shell completion
-# if type brew &>/dev/null; then
+# if type brew &> /dev/null; then
 #   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-
 #   autoload -Uz compinit
 #   compinit
 #   # rm -f ~/.zcompdump; compinit
 # fi
  
+ 
+system_type=$(uname -s)
  
 # OH-MY-ZSH
 # 
@@ -16,7 +18,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="agnoster"
 ZSH_THEME="spaceship-prompt/spaceship"
-
+ 
 COMPLETION_WAITING_DOTS="true"
  
 ## Spaceship Prompt Options
@@ -49,9 +51,12 @@ plugins=(
  
 # FZF
 #
-export FZF_BASE="/usr/local/opt/fzf" # macos
-export FZF_DEFAULT_COMMAND="fd --type f" # macos
-# export FZF_DEFAULT_COMMAND="fdfind --type f" # linux
+if [ "$system_type" = "Darwin" ]; then
+  export FZF_BASE="/usr/local/opt/fzf"
+  export FZF_DEFAULT_COMMAND="fd --type f"
+else
+  export FZF_DEFAULT_COMMAND="fdfind --type f"
+fi
 export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --border --multi'
  
 source "$ZSH/oh-my-zsh.sh"
@@ -73,7 +78,6 @@ alias vi="nvim"
 alias vimrc="nvim ~/.config/nvim/init.vim"
 alias zshrc="nvim ~/.zshrc"
 alias zshrcc="code ~/.zshrc"
-# alias fd="fdfind" # linux
  
 alias dotfile="cd ~/share/dotfiles"
 alias gtc="cd ~/.config"
@@ -85,27 +89,13 @@ export EDITOR="nvim"
 export GIT_EDITOR="nvim"
 export VISUAL="code"
  
-## lf
+## LF
 # 
 [ -f "$HOME/.config/lf/diricons" ] && source "$HOME/.config/lf/diricons"
-export PATH="$HOME/.local/bin:$PATH" # linux
  
-## Bat
+## BAT
 # 
 export BAT_THEME="Coldark-Dark"
- 
-## Load .env file
-#
-loadenv() {
-  local envfile="${1:=.env}"
-  if [ -f $envfile ]; then
-    # Load Environment Variables
-    echo "Loading env vars from $envfile"
-    export $(grep -v '^#' $envfile | xargs)
-  else
-    echo "Failed to load env vars: \"$envfile\" not found."
-  fi
-}
  
 ## Git Aliases
 # 
@@ -132,8 +122,7 @@ alias gsm="git switch main"
 alias gsms="git switch master"
 alias gst="git stash"
 alias gsw="git switch"
-gitignore() { echo ".DS_Store\nnode_modules/\n\n.env\n.env.local\n\n.firebase/\n.netlify/\n\nbuild/\ndist/\n" >> ".gitignore" }
-  
+ 
 ## postgres alias
 # 
 alias startpsql="brew services start postgresql"
@@ -151,7 +140,7 @@ alias stopmysql="brew services stop mysql"
 alias startmongo="brew services start mongodb-community"
 alias restartmongo="brew services restart mongodb-community"
 alias stopmongo="brew services stop mongodb-community"
-
+ 
 ## redis alias
 # 
 alias startredis="brew services start redis"
@@ -169,17 +158,14 @@ export PATH="$PATH:$ANDROID_SDK/platform-tools"
  
 ## JAVA
 # 
-export JAVA_8_HOME=$("/usr/libexec/java_home" -v 1.8)
-export JAVA_11_HOME=$("/usr/libexec/java_home" -v 11)
- 
-alias java_home="/usr/libexec/java_home"
-alias java8="export JAVA_HOME=$JAVA_8_HOME"
-alias java11="export JAVA_HOME=$JAVA_11_HOME"
- 
-## SSH
-#
-alias connxampp="ssh -i '$HOME/.bitnami/stackman/machines/xampp/ssh/id_rsa' -o StrictHostKeyChecking=no 'bitnami@192.168.64.2'"
-alias connvbox="ssh 'zzacong@192.168.56.3'"
+if command -v "/usr/libexec/java_home" &> /dev/null; then
+  export JAVA_8_HOME=$("/usr/libexec/java_home" -v 1.8)
+  export JAVA_11_HOME=$("/usr/libexec/java_home" -v 11)
+
+  alias java_home="/usr/libexec/java_home"
+  alias java8="export JAVA_HOME=$JAVA_8_HOME"
+  alias java11="export JAVA_HOME=$JAVA_11_HOME"
+fi
  
 ## Ibmcloud
 #
@@ -190,36 +176,13 @@ alias ce="ibmcloud ce"
 alias cr="ibmcloud cr" 
 alias cftarget="ibmcloud target --cf"
  
-## Docker
-#
-function dockerprune {
-  docker rmi `docker images --filter "dangling=true" -q`
-}
- 
-## Conda
-# 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-  __conda_setup="$('$HOME/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-  if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-  else
-      if [ -f "$HOME/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "$HOME/opt/anaconda3/etc/profile.d/conda.sh"
-      else
-        export PATH="$HOME/opt/anaconda3/bin:$PATH"
-      fi
-  fi
-# unset __conda_setup
-# <<< conda initialize <<<
- 
 ## Flutter
 # 
 export PATH="$PATH:$HOME/flutter/bin"
  
 ## Haskell ghcup
 # 
-[ -f "/Users/zzmacpro/.ghcup/env" ] && source "/Users/zzmacpro/.ghcup/env" # ghcup-env
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
  
 ## Go
 # 
@@ -231,32 +194,83 @@ export PATH="$PATH:$GOPATH/bin"
 alias xampp="cd $HOME/bitnami/stackman/machines/xampp/volumes/root"
 alias htdocs="cd $HOME/.bitnami/stackman/machines/xampp/volumes/root/htdocs"
  
-# prompt_context(){}
-
-## Fauna autocomplete setup
+## Fauna
 # 
-FAUNA_AC_ZSH_SETUP_PATH="$HOME/Library/Caches/fauna-shell/autocomplete/zsh_setup" && test -f $FAUNA_AC_ZSH_SETUP_PATH && source $FAUNA_AC_ZSH_SETUP_PATH
+FAUNA_AC_ZSH_SETUP_PATH="$HOME/Library/Caches/fauna-shell/autocomplete/zsh_setup"
+[ -f $FAUNA_AC_ZSH_SETUP_PATH ] && source $FAUNA_AC_ZSH_SETUP_PATH # fauna shell autocomplete
  
 ## Created by `pipx` on 2021-09-09 05:14:45
 # 
-export PATH="$PATH:$HOME/.local/bin"
 # enable pipx shell completion
-eval "$(register-python-argcomplete pipx)"
+if command -v "register-python-argcomplete" &> /dev/null; then
+  eval "$(register-python-argcomplete pipx)"
+fi
  
-## Homebrew
+## Add PATHs
 # 
 export PATH="/usr/local/sbin:$PATH"
-
+export PATH="$PATH:$HOME/.local/bin"
+ 
 ## Man page
 #
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
  
-# export GPG_TTY=$(tty)
+if [ "$system_type" = "Darwin" ]; then
+  # MacOS
+  # 
+  ## Conda
+  # 
+  # >>> conda initialize >>>
+  # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('$HOME/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+      eval "$__conda_setup"
+    else
+        if [ -f "$HOME/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+          . "$HOME/opt/anaconda3/etc/profile.d/conda.sh"
+        else
+          export PATH="$HOME/opt/anaconda3/bin:$PATH"
+        fi
+    fi
+  # unset __conda_setup
+  # <<< conda initialize <<<
+  
+else
+  # Linux
+  # 
+  alias fd="fdfind" ##os.Linux
+  # SSH Key os.Linux
+  #
+  # if [ -z "$SSH_AUTH_SOCK" ] ; then
+    # eval `ssh-agent -s`
+    # ssh-add
+  # fi
+fi
  
-# SSH Key (Linux)
+# CUSTOM FUNCTIONS
+# 
+## Load .env file
 #
-# if [ -z "$SSH_AUTH_SOCK" ] ; then
-#   eval `ssh-agent -s`
-#   ssh-add
-# fi
+loadenv() {
+  local envfile="${1:=.env}"
+  if [ -f $envfile ]; then
+    # Load Environment Variables
+    echo "Loading env vars from $envfile"
+    export $(grep -v '^#' $envfile | xargs)
+  else
+    echo "Failed to load env vars: \"$envfile\" not found."
+  fi
+}
+ 
+## Docker
+#
+dockerprune() {
+  docker rmi `docker images --filter "dangling=true" -q`
+}
+ 
+## Git
+#
+gitignore() { 
+  echo ".DS_Store\nnode_modules/\n\n.env\n.env.local\n\n.firebase/\n.netlify/\n\nbuild/\ndist/\n" >> ".gitignore" 
+}
  
