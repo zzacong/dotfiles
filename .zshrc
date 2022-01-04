@@ -10,7 +10,7 @@
 # fi
  
  
-system_type=$(uname -s)
+SYSTEM_TYPE=$(uname -s)
  
 # OH-MY-ZSH
 # 
@@ -51,7 +51,7 @@ plugins=(
  
 # FZF
 #
-if [ "$system_type" = "Darwin" ]; then
+if [ "$SYSTEM_TYPE" = "Darwin" ]; then
   export FZF_BASE="/usr/local/opt/fzf"
   export FZF_DEFAULT_COMMAND="fd --type f"
 else
@@ -215,7 +215,7 @@ export PATH="$PATH:$HOME/.local/bin"
 #
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
  
-if [ "$system_type" = "Darwin" ]; then
+if [ "$SYSTEM_TYPE" = "Darwin" ]; then
   # MacOS
   # 
   ## Conda
