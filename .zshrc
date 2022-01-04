@@ -40,9 +40,7 @@ plugins=(
   pipenv
   npm
   nvm
-  macos
   sudo
-  thefuck
   yarn
   z
   zsh-autosuggestions
@@ -52,6 +50,11 @@ plugins=(
 # FZF
 #
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+  plugins+=(
+    macos
+    thefuck
+  )
+  
   export FZF_BASE="/usr/local/opt/fzf"
   export FZF_DEFAULT_COMMAND="fd --type f"
 else
