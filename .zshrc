@@ -100,9 +100,9 @@ export VISUAL="code"
 # 
 export BAT_THEME="Coldark-Dark"
  
-## Git Aliases
+## git alias
 # 
-alias ga="git add ."
+alias ga="git add"
 alias gac="git add . && git commit -m"
 alias gb="git branch"
 alias gba="git branch --all"
@@ -120,11 +120,20 @@ alias gpush="git push"
 alias grh="git reset --hard"
 alias grm="git remote"
 alias gs="git status"
-alias gsc="git switch --create"
 alias gsm="git switch main"
 alias gsms="git switch master"
 alias gst="git stash"
 alias gsw="git switch"
+ 
+## yadm alias
+# 
+alias ya="yadm add"
+alias yc="yadm commit -m"
+alias ydiff="yadm diff"
+alias yf="yadm fetch"
+alias ypull="yadm pull"
+alias ypush="yadm push"
+alias ys="yadm status"
  
 ## postgres alias
 # 
