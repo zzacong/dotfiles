@@ -269,7 +269,7 @@ fi
 loadenv() {
   local envfile="${1:=.env}"
   if [ -f $envfile ]; then
-    # Load Environment Variables
+    # Load environment variables
     echo "Loading env vars from $envfile"
     export $(grep -v '^#' $envfile | xargs)
   else
