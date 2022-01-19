@@ -246,6 +246,8 @@ if [ "$SYSTEM_TYPE" = "Darwin" ]; then
     fi
   # unset __conda_setup
   # <<< conda initialize <<<
+  alias bdate="brew update && brew outdated"
+  alias bgrade="brew upgrade && brew cleanup"
   
 else
   # Linux
