@@ -82,11 +82,10 @@ alias vimrc="nvim ~/.config/nvim/init.vim"
 alias zshrc="nvim ~/.zshrc"
 alias zshrcc="code ~/.zshrc"
  
-alias dotfile="cd ~/share/dotfiles"
 alias gtc="cd ~/.config"
 alias gtl="cd ~/.local"
-alias gtp="cd ~/project"
-alias gts="cd ~/sandbox"
+alias gtp="cd ~/dev/project"
+alias gts="cd ~/dev/sandbox"
  
 export EDITOR="nvim"
 export GIT_EDITOR="nvim"
