@@ -31,6 +31,7 @@ plugins=(
   docker-compose
   extract
   fd
+  flutter
   fzf
   gitfast
   gitignore
@@ -174,8 +175,8 @@ if command -v "/usr/libexec/java_home" &> /dev/null; then
   export JAVA_11_HOME=$("/usr/libexec/java_home" -v 11)
 
   alias java_home="/usr/libexec/java_home"
-  alias java8="export JAVA_HOME=$JAVA_8_HOME"
-  alias java11="export JAVA_HOME=$JAVA_11_HOME"
+  java8() { export JAVA_HOME=$JAVA_8_HOME }
+  java11() { export JAVA_HOME=$JAVA_11_HOME }
 fi
  
 ## Ibmcloud
