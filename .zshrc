@@ -53,7 +53,6 @@ plugins=(
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
   plugins+=(
     macos
-    thefuck
   )
   
   export FZF_BASE="/usr/local/opt/fzf"
@@ -131,6 +130,7 @@ alias ya="yadm add"
 alias yc="yadm commit -m"
 alias ydiff="yadm diff"
 alias yf="yadm fetch"
+alias ylog="yadm log --oneline"
 alias ypull="yadm pull"
 alias ypush="yadm push"
 alias ys="yadm status"
