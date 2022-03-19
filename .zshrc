@@ -1,3 +1,8 @@
+#
+# Fig pre block. Keep at the top of this file.
+export PATH="${PATH}:${HOME}/.local/bin"
+eval "$(fig init zsh pre)"
+
 # ~/.zshrc
 #
  
@@ -26,23 +31,20 @@ SPACESHIP_PACKAGE_SHOW=true
 SPACESHIP_TIME_SHOW=true
  
 plugins=(
-  copyfile
-  docker
-  docker-compose
+  # docker
+  # docker-compose
   extract
-  fd
-  flutter
-  fzf
-  gitfast
+  # fd
+  # flutter
+  # fzf
+  # gitfast
   gitignore
   history
-  kubectl
-  pip
-  pipenv
-  npm
+  # kubectl
+  # pip
+  # pipenv
   nvm
   sudo
-  yarn
   z
   zsh-autosuggestions
   zsh-syntax-highlighting
@@ -51,10 +53,6 @@ plugins=(
 # FZF
 #
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-  plugins+=(
-    macos
-  )
-  
   export FZF_BASE="/usr/local/opt/fzf"
   export FZF_DEFAULT_COMMAND="fd --type f"
 else
@@ -290,4 +288,7 @@ dockerprune() {
 gitignore() { 
   echo ".DS_Store\nnode_modules/\n\n.env\n.env.local\n\n.firebase/\n.netlify/\n\nbuild/\ndist/\n" >> ".gitignore" 
 }
+ 
+# Fig post block. Keep at the bottom of this file.
+eval "$(fig init zsh post)"
  
