@@ -1,9 +1,8 @@
-#
 # Fig pre block. Keep at the top of this file.
 export PATH="${PATH}:${HOME}/.local/bin"
 eval "$(fig init zsh pre)"
 
-# ~/.zshrc
+## ~/.zshrc
 #
  
 # Load Homebrew shell completion
@@ -82,8 +81,8 @@ alias zshrcc="code ~/.zshrc"
  
 alias gtc="cd ~/.config"
 alias gtl="cd ~/.local"
-alias gtp="cd ~/dev/project"
-alias gts="cd ~/dev/sandbox"
+alias gtp="cd ~/Developer/project"
+alias gts="cd ~/Developer/sandbox"
  
 export EDITOR="nvim"
 export GIT_EDITOR="nvim"
@@ -288,7 +287,7 @@ dockerprune() {
 gitignore() { 
   echo ".DS_Store\nnode_modules/\n\n.env\n.env.local\n\n.firebase/\n.netlify/\n\nbuild/\ndist/\n" >> ".gitignore" 
 }
- 
+
 # Fig post block. Keep at the bottom of this file.
 eval "$(fig init zsh post)"
- 
+

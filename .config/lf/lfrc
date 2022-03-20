@@ -67,8 +67,8 @@ map <enter> open
 map gtd cd ~/desktop
 map gtc cd ~/.config
 map gtl cd ~/.local
-map gtp cd ~/dev/project
-map gts cd ~/dev/sandbox
+map gtp cd ~/Developer/project
+map gts cd ~/Developer/sandbox
 
 # Preview
 # set previewer ~/.config/lf/pv.sh
