@@ -150,12 +150,6 @@ alias startmongo="brew services start mongodb-community"
 alias restartmongo="brew services restart mongodb-community"
 alias stopmongo="brew services stop mongodb-community"
  
-## redis alias
-# 
-alias startredis="brew services start redis"
-alias restartredis="brew services restart redis"
-alias stopredis="brew services stop redis"
- 
 ## ANDROID_SDK
 # 
 export ANDROID_SDK="$HOME/Library/Android/sdk"
