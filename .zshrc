@@ -1,6 +1,6 @@
 # Fig pre block. Keep at the top of this file.
-export PATH="${PATH}:${HOME}/.local/bin"
-eval "$(fig init zsh pre)"
+# export PATH="${PATH}:${HOME}/.local/bin"
+# eval "$(fig init zsh pre)"
 
 ## ~/.zshrc
 #
@@ -150,6 +150,15 @@ alias startmongo="brew services start mongodb-community"
 alias restartmongo="brew services restart mongodb-community"
 alias stopmongo="brew services stop mongodb-community"
  
+# pnpm
+# 
+export PNPM_HOME="/Users/zzmacpro/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+alias pnpx="pnpm dlx"
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
+ 
 ## ANDROID_SDK
 # 
 export ANDROID_SDK="$HOME/Library/Android/sdk"
@@ -283,5 +292,5 @@ gitignore() {
 }
 
 # Fig post block. Keep at the bottom of this file.
-eval "$(fig init zsh post)"
+# eval "$(fig init zsh post)"
 
