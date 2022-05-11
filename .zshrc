@@ -152,7 +152,7 @@ alias stopmongo="brew services stop mongodb-community"
  
 # pnpm
 # 
-export PNPM_HOME="/Users/zzmacpro/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 alias pnpx="pnpm dlx"
 # tabtab source for packages
