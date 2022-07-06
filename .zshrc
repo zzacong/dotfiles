@@ -100,6 +100,8 @@ export BAT_THEME="Coldark-Dark"
 # 
 alias ga="git add"
 alias gac="git add . && git commit -m"
+alias gan="git add -N ."
+alias gap="git add -N . && git add -p"
 alias gb="git branch"
 alias gba="git branch --all"
 alias gc="git commit -m"
