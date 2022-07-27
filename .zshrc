@@ -32,6 +32,8 @@ SPACESHIP_TIME_SHOW=true
 plugins=(
   # docker
   # docker-compose
+  # dotenv
+  dotnet
   extract
   # fd
   # flutter
@@ -109,6 +111,7 @@ alias gcl="git clone"
 alias gdiff="git diff"
 alias gedit="git commit --amend --no-edit"
 alias gedita="git add . && git commit --amend --no-edit"
+alias geditm="git commit --amend"
 alias gf="git fetch"
 alias gfa="git fetch --all"
 alias gign="[ ! -f '.gitignore' ] && gitignore"
