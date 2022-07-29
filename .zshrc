@@ -44,7 +44,7 @@ plugins=(
   # kubectl
   # pip
   # pipenv
-  nvm
+  # nvm
   sudo
   z
   zsh-autosuggestions
@@ -225,6 +225,14 @@ FAUNA_AC_ZSH_SETUP_PATH="$HOME/Library/Caches/fauna-shell/autocomplete/zsh_setup
 if command -v "register-python-argcomplete" &> /dev/null; then
   eval "$(register-python-argcomplete pipx)"
 fi
+ 
+## Fnm (node version manager)
+#
+if command -v "fnm" &> /dev/null; then
+  eval "$(fnm env)"
+  # eval "$(fnm env --use-on-cd)"
+fi
+
  
 ## Add PATHs
 # 
