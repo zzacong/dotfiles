@@ -37,6 +37,7 @@ plugins=(
   extract
   # fd
   # flutter
+  fnm
   # fzf
   # gitfast
   gitignore
