@@ -46,6 +46,7 @@ plugins=(
   # pip
   # pipenv
   # nvm
+  rust
   sudo
   z
   zsh-autosuggestions
