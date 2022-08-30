@@ -43,10 +43,9 @@ plugins=(
   gitignore
   history
   # kubectl
-  # pip
-  # pipenv
+  pip
+  pipenv
   # nvm
-  rust
   sudo
   z
   zsh-autosuggestions
@@ -145,9 +144,9 @@ alias ys="yadm status"
  
 ## postgres alias
 # 
-alias startpsql="brew services start postgresql"
-alias restartpsql="brew services restart postgresql"
-alias stoppsql="brew services stop postgresql"
+alias startpsql="brew services start postgresql@14"
+alias restartpsql="brew services restart postgresql@14"
+alias stoppsql="brew services stop postgresql@14"
  
 ## mysql alias
 # 
