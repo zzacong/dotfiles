@@ -160,14 +160,22 @@ alias startmongo="brew services start mongodb-community"
 alias restartmongo="brew services restart mongodb-community"
 alias stopmongo="brew services stop mongodb-community"
  
-# pnpm
+## pnpm
 # 
 export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
+alias pn="pnpm"
 alias pnpx="pnpm dlx"
 # tabtab source for packages
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
+ 
+## npm - corepack
+# 
+corepackup() {
+  corepack prepare pnpm@latest --activate;
+  corepack prepare yarn@stable --activate;
+}
  
 ## ANDROID_SDK
 # 
@@ -310,5 +318,4 @@ gitignore() {
 }
 
 # Fig post block. Keep at the bottom of this file.
-# eval "$(fig init zsh post)"
-
+#
