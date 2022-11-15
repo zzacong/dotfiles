@@ -1,7 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-# export PATH="${PATH}:${HOME}/.local/bin"
-# eval "$(fig init zsh pre)"
-
 ## ~/.zshrc
 #
  
@@ -12,10 +8,10 @@
 #   compinit
 #   # rm -f ~/.zcompdump; compinit
 # fi
- 
- 
+
+
 SYSTEM_TYPE=$(uname -s)
- 
+
 # OH-MY-ZSH
 # 
 export ZSH="$HOME/.oh-my-zsh"
@@ -28,8 +24,9 @@ COMPLETION_WAITING_DOTS="true"
 ## Spaceship Prompt Options
 SPACESHIP_PACKAGE_SHOW=true
 SPACESHIP_TIME_SHOW=true
- 
+
 plugins=(
+  deno
   # docker
   # docker-compose
   # dotenv
@@ -51,7 +48,7 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
- 
+
 # FZF
 #
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
@@ -63,8 +60,8 @@ fi
 export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --border --multi'
  
 source "$ZSH/oh-my-zsh.sh"
- 
- 
+
+
 # USER CONFIGURATION
 # 
 ## Custom Aliases
@@ -81,24 +78,24 @@ alias vi="nvim"
 alias vimrc="nvim ~/.config/nvim/init.vim"
 alias zshrc="nvim ~/.zshrc"
 alias zshrcc="code ~/.zshrc"
- 
+
 alias gtc="cd ~/.config"
 alias gtl="cd ~/.local"
 alias gtp="cd ~/Developer/project"
 alias gts="cd ~/Developer/sandbox"
- 
+
 export EDITOR="nvim"
 export GIT_EDITOR="nvim"
 export VISUAL="code"
- 
+
 ## LF
 # 
 [ -f "$HOME/.config/lf/diricons" ] && source "$HOME/.config/lf/diricons"
- 
+
 ## BAT
 # 
 export BAT_THEME="Coldark-Dark"
- 
+
 ## git alias
 # 
 alias ga="git add"
@@ -130,7 +127,7 @@ alias gsm="git switch main"
 alias gsms="git switch master"
 alias gst="git stash"
 alias gsw="git switch"
- 
+
 ## yadm alias
 # 
 alias ya="yadm add"
@@ -141,25 +138,25 @@ alias ylog="yadm log --oneline"
 alias ypull="yadm pull"
 alias ypush="yadm push"
 alias ys="yadm status"
- 
+
 ## postgres alias
 # 
 alias startpsql="brew services start postgresql@14"
 alias restartpsql="brew services restart postgresql@14"
 alias stoppsql="brew services stop postgresql@14"
- 
+
 ## mysql alias
 # 
 alias startmysql="brew services start mysql"
 alias restartmysql="brew services restart mysql"
 alias stopmysql="brew services stop mysql"
- 
+
 ## mongodb alias
 # 
 alias startmongo="brew services start mongodb-community"
 alias restartmongo="brew services restart mongodb-community"
 alias stopmongo="brew services stop mongodb-community"
- 
+
 ## pnpm
 # 
 export PNPM_HOME="$HOME/Library/pnpm"
@@ -169,14 +166,14 @@ alias pnpx="pnpm dlx"
 # tabtab source for packages
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
- 
+
 ## npm - corepack
 # 
 corepackup() {
   corepack prepare pnpm@latest --activate;
   corepack prepare yarn@stable --activate;
 }
- 
+
 ## ANDROID_SDK
 # 
 export ANDROID_SDK="$HOME/Library/Android/sdk"
@@ -185,18 +182,17 @@ export PATH="$PATH:$ANDROID_SDK/emulator"
 export PATH="$PATH:$ANDROID_SDK/tools"
 export PATH="$PATH:$ANDROID_SDK/tools/bin"
 export PATH="$PATH:$ANDROID_SDK/platform-tools"
- 
+
 ## JAVA
 # 
 if command -v "/usr/libexec/java_home" &> /dev/null; then
   export JAVA_8_HOME=$("/usr/libexec/java_home" -v 1.8)
   export JAVA_11_HOME=$("/usr/libexec/java_home" -v 11)
-
   alias java_home="/usr/libexec/java_home"
   java8() { export JAVA_HOME=$JAVA_8_HOME }
   java11() { export JAVA_HOME=$JAVA_11_HOME }
 fi
- 
+
 ## Ibmcloud
 #
 [ -f "/usr/local/ibmcloud/autocomplete/zsh_autocomplete" ] && source "/usr/local/ibmcloud/autocomplete/zsh_autocomplete"
@@ -205,37 +201,37 @@ alias cf="ibmcloud cf"
 alias ce="ibmcloud ce" 
 alias cr="ibmcloud cr" 
 alias cftarget="ibmcloud target --cf"
- 
+
 ## Flutter
 # 
 export PATH="$PATH:$HOME/flutter/bin"
- 
+
 ## Haskell ghcup
 # 
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
- 
+
 ## Go
 # 
 export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
- 
+
 ## Xampp
 # 
 alias xampp="cd $HOME/bitnami/stackman/machines/xampp/volumes/root"
 alias htdocs="cd $HOME/.bitnami/stackman/machines/xampp/volumes/root/htdocs"
- 
+
 ## Fauna
 # 
 FAUNA_AC_ZSH_SETUP_PATH="$HOME/Library/Caches/fauna-shell/autocomplete/zsh_setup"
 [ -f $FAUNA_AC_ZSH_SETUP_PATH ] && source $FAUNA_AC_ZSH_SETUP_PATH # fauna shell autocomplete
- 
+
 ## Created by `pipx` on 2021-09-09 05:14:45
 # 
 # enable pipx shell completion
 if command -v "register-python-argcomplete" &> /dev/null; then
   eval "$(register-python-argcomplete pipx)"
 fi
- 
+
 ## Fnm (node version manager)
 #
 if command -v "fnm" &> /dev/null; then
@@ -243,16 +239,16 @@ if command -v "fnm" &> /dev/null; then
   # eval "$(fnm env --use-on-cd)"
 fi
 
- 
+
 ## Add PATHs
 # 
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$PATH:$HOME/.local/bin"
- 
+
 ## Man page
 #
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
- 
+
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
   # MacOS
   # 
@@ -304,18 +300,16 @@ loadenv() {
     echo "Failed to load env vars: \"$envfile\" not found."
   fi
 }
- 
+
 ## Docker
 #
 dockerprune() {
   docker rmi `docker images --filter "dangling=true" -q`
 }
- 
+
 ## Git
 #
 gitignore() { 
   echo ".DS_Store\nnode_modules/\n\n.env\n.env.local\n\n.firebase/\n.netlify/\n\nbuild/\ndist/\n" >> ".gitignore" 
 }
 
-# Fig post block. Keep at the bottom of this file.
-#
