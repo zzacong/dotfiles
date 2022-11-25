@@ -12,7 +12,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'sheerun/vim-polyglot'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -124,9 +124,10 @@ let g:coc_global_extensions = [
 						\ 'coc-pairs',
 						\ 'coc-css',
 						\ 'coc-tsserver',
-						\ 'coc-phpls',
-						\ 'coc-sql'
+						\ 'coc-deno',
 						\ ]
+						" \ 'coc-phpls',
+						" \ 'coc-sql',
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.6 } }
