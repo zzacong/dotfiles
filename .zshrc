@@ -293,9 +293,10 @@ fi
 loadenv() {
   local envfile="${1:=.env}"
   if [ -f $envfile ]; then
-    # Load environment variables
     echo "Loading env vars from $envfile"
-    export $(grep -v '^#' $envfile | xargs)
+    set -a
+    source <(cat $envfile | sed -e '/^#/d;/^\s*$/d')
+    set +a
   else
     echo "Failed to load env vars: \"$envfile\" not found."
   fi
