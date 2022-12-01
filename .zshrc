@@ -295,7 +295,7 @@ loadenv() {
   if [ -f $envfile ]; then
     echo "Loading env vars from $envfile"
     set -a
-    source <(cat $envfile | sed -e '/^#/d;/^\s*$/d')
+    source <(cat $envfile | sed -e '/^[[:space:]]*#/d;/^[[:space:]]*$/d')
     set +a
   else
     echo "Failed to load env vars: \"$envfile\" not found."
