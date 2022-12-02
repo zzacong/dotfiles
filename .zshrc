@@ -314,3 +314,8 @@ gitignore() {
   echo ".DS_Store\nnode_modules/\n\n.env\n.env.local\n\n.firebase/\n.netlify/\n\nbuild/\ndist/\n" >> ".gitignore" 
 }
 
+gitzzacong() {
+  git config user.name zzacong
+  git config user.email 61817066+zzacong@users.noreply.github.com
+}
+
