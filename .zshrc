@@ -186,11 +186,13 @@ export PATH="$PATH:$ANDROID_SDK/platform-tools"
 ## JAVA
 # 
 if command -v "/usr/libexec/java_home" &> /dev/null; then
-  export JAVA_8_HOME=$("/usr/libexec/java_home" -v 1.8)
-  export JAVA_11_HOME=$("/usr/libexec/java_home" -v 11)
   alias java_home="/usr/libexec/java_home"
-  java8() { export JAVA_HOME=$JAVA_8_HOME }
-  java11() { export JAVA_HOME=$JAVA_11_HOME }
+  java8() { export JAVA_HOME=$("/usr/libexec/java_home" -v 1.8) }
+  jdk() {
+    version=$1
+    export JAVA_HOME=$("/usr/libexec/java_home" -v "$version")
+    java -version
+  }
 fi
 
 ## Ibmcloud
