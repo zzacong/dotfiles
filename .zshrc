@@ -171,6 +171,7 @@ alias pnpx="pnpm dlx"
 ## npm - corepack
 # 
 corepackup() {
+  corepack enable
   corepack prepare pnpm@latest --activate;
   corepack prepare yarn@stable --activate;
 }
