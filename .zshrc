@@ -8,7 +8,7 @@
 #   compinit
 #   # rm -f ~/.zcompdump; compinit
 # fi
-
+FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 
 SYSTEM_TYPE=$(uname -s)
 
