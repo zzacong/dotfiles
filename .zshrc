@@ -8,7 +8,12 @@
 #   compinit
 #   # rm -f ~/.zcompdump; compinit
 # fi
-FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+# Load Homebrew on Apple Silicon
+if [[ $(uname -m) == "arm64" ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
 
 SYSTEM_TYPE=$(uname -s)
 
