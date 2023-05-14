@@ -246,6 +246,7 @@ fi
 if command -v "fnm" &> /dev/null; then
   eval "$(fnm env)"
   # eval "$(fnm env --use-on-cd)"
+  alias f16="fnm use 16"
 fi
 
 
@@ -324,7 +325,12 @@ gitignore() {
 }
 
 gitzzacong() {
-  git config user.name zzacong
-  git config user.email 61817066+zzacong@users.noreply.github.com
+  git config user.name "Zac Ong"
+  git config user.email "61817066+zzacong@users.noreply.github.com"
+}
+
+gitibm() {
+  git config user.name "Zac Ong"
+  git config user.email "zac.ong@ibm.com"
 }
 
