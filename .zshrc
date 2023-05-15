@@ -339,6 +339,12 @@ read_bitrate() {
 }
 
 to_bitrate_2M() {
-  ffmpeg -i "$1" -b:v 2M ${2:-'output.mp4'}
+  if [ -f "$1" ]; then
+    local filename_no_ext="${1%.*}"
+    local output="${filename_no_ext}_output.mp4"
+    ffmpeg -i "$1" -b:v 2M "${2:-$output}"
+  else
+    echo "'${1:-<no name>}' does not exist."
+  fi
 }
 
