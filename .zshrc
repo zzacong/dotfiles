@@ -334,3 +334,11 @@ gitibm() {
   git config user.email "zac.ong@ibm.com"
 }
 
+read_bitrate() {
+    ffprobe -v error -print_format json -show_entries stream=bit_rate "$1" | jq '.streams[0].bit_rate'
+}
+
+to_bitrate_2M() {
+  ffmpeg -i "$1" -b:v 2M ${2:-'output.mp4'}
+}
+
