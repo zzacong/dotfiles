@@ -338,13 +338,42 @@ read_bitrate() {
     ffprobe -v error -print_format json -show_entries stream=bit_rate "$1" | jq '.streams[0].bit_rate'
 }
 
-to_bitrate_2M() {
-  if [ -f "$1" ]; then
-    local filename_no_ext="${1%.*}"
-    local output="${filename_no_ext}_output.mp4"
-    ffmpeg -i "$1" -b:v 2M "${2:-$output}"
+to_low_bitrate() {
+  if command -v "ffmpeg" >/dev/null 2>&1; then
+    while getopts ":i:o:b:" opt; do
+      case $opt in
+      i)
+        local arg_i="$OPTARG"
+        ;;
+      o)
+        local arg_o="$OPTARG"
+        ;;
+      b)
+        local arg_b="$OPTARG"
+        ;;
+      \?)
+        echo "Invalid option: -$OPTARG" >&2
+        return 1
+        ;;
+      :)
+        echo "Option -$OPTARG requires an argument." >&2
+        return 1
+        ;;
+      esac
+    done
+    if [[ -n "$arg_i" && -f "$arg_i" ]]; then
+      local filename_no_ext="${arg_i%.*}"
+      local video_output="${filename_no_ext}_output.mp4"
+    else
+      echo "'${arg_i:-<no name>}' does not exist." >&2
+      return 1
+    fi
+    echo "Input: $arg_i"
+    echo "Output: ${arg_o:-$video_output}"
+    echo "Bitrate: ${arg_b:-2M}"
+    ffmpeg -i "$arg_i" -b:v "${arg_b:-2M}" "${arg_o:-$video_output}"
   else
-    echo "'${1:-<no name>}' does not exist."
+    echo "ffmpeg not found." >&2
+    return 1
   fi
 }
-
