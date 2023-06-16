@@ -31,7 +31,7 @@ Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 call plug#end()
 
-
+let uname = system('uname -m')
 
  " "--- Config --- " "
  "
@@ -132,9 +132,6 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.6 } }
 let $FZF_DEFAULT_OPTS='--reverse --border'
-
-" " Python Interpreter " "
-let g:python3_host_prog = '/usr/local/bin/python3'
 
 " " Key Mapping " "
 "
