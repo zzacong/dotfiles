@@ -83,7 +83,7 @@ alias vi="nvim"
 alias vimrc="nvim ~/.config/nvim/init.vim"
 alias zshrc="nvim ~/.zshrc"
 alias zshrcc="code ~/.zshrc"
-alias yt="youtube-dl --add-metadata"
+alias dl="youtube-dl --add-metadata"
 
 alias gtc="cd ~/.config"
 alias gtl="cd ~/.local"
