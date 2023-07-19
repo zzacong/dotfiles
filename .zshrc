@@ -29,6 +29,7 @@ COMPLETION_WAITING_DOTS="true"
 ## Spaceship Prompt Options
 SPACESHIP_PACKAGE_SHOW=true
 SPACESHIP_TIME_SHOW=true
+SPACESHIP_IBMCLOUD_SYMBOL="☁️  "
 
 plugins=(
   deno
@@ -93,6 +94,7 @@ alias gts="cd ~/Developer/sandbox"
 export EDITOR="nvim"
 export GIT_EDITOR="nvim"
 export VISUAL="code"
+export MY_PROXY="johnfire:johnfire@170.64.187.115:3128"
 
 ## LF
 # 
