@@ -84,7 +84,6 @@ alias vi="nvim"
 alias vimrc="nvim ~/.config/nvim/init.vim"
 alias zshrc="nvim ~/.zshrc"
 alias zshrcc="code ~/.zshrc"
-alias dl="youtube-dl --add-metadata"
 
 alias gtc="cd ~/.config"
 alias gtl="cd ~/.local"
@@ -95,6 +94,7 @@ export EDITOR="nvim"
 export GIT_EDITOR="nvim"
 export VISUAL="code"
 export MY_PROXY="johnfire:johnfire@170.64.187.115:3128"
+export DIGITALOCEAN="zacong@170.64.187.115"
 
 ## LF
 # 
