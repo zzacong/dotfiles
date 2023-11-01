@@ -134,6 +134,7 @@ alias gs="git status"
 alias gsm="git switch main"
 alias gsms="git switch master"
 alias gst="git stash"
+alias gstls="git stash list"
 alias gsw="git switch"
 
 ## yadm alias
