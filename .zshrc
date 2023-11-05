@@ -71,6 +71,12 @@ source "$ZSH/oh-my-zsh.sh"
 # USER CONFIGURATION
 # 
 ## Custom Aliases
+export EDITOR="nvim"
+export GIT_EDITOR="nvim"
+export VISUAL="code"
+export MY_PROXY="johnfire:johnfire@170.64.187.115:3128"
+export DIGITALOCEAN="zacong@170.64.187.115"
+
 alias cl="clear"
 alias dirs="dirs -v"
 alias fzfd="fd --type d | fzf"
@@ -84,17 +90,12 @@ alias vi="nvim"
 alias vimrc="nvim ~/.config/nvim/init.vim"
 alias zshrc="nvim ~/.zshrc"
 alias zshrcc="code ~/.zshrc"
+alias dl="youtube-dl --proxy $MY_PROXY"
 
 alias gtc="cd ~/.config"
 alias gtl="cd ~/.local"
 alias gtp="cd ~/Developer/project"
 alias gts="cd ~/Developer/sandbox"
-
-export EDITOR="nvim"
-export GIT_EDITOR="nvim"
-export VISUAL="code"
-export MY_PROXY="johnfire:johnfire@170.64.187.115:3128"
-export DIGITALOCEAN="zacong@170.64.187.115"
 
 ## LF
 # 
