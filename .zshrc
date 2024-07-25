@@ -1,3 +1,5 @@
+# zmodload zsh/zprof
+
 ## ~/.zshrc
 #
  
@@ -36,8 +38,8 @@ plugins=(
   # docker
   # docker-compose
   # dotenv
-  dotnet
-  extract
+  # dotnet
+  # extract
   # fd
   # flutter
   fnm
@@ -74,8 +76,8 @@ source "$ZSH/oh-my-zsh.sh"
 export EDITOR="nvim"
 export GIT_EDITOR="nvim"
 export VISUAL="code"
-export MY_PROXY="johnfire:johnfire@170.64.187.115:3128"
-export DIGITALOCEAN="zacong@170.64.187.115"
+export MY_PROXY="johnfire:johnfire@170.64.192.59:3128"
+export DIGITALOCEAN="zacong@170.64.192.59"
 
 alias cl="clear"
 alias dirs="dirs -v"
