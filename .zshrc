@@ -46,10 +46,10 @@ plugins=(
   # fzf
   # gitfast
   gitignore
-  history
+  # history
   # kubectl
   pip
-  pipenv
+  # pipenv
   # nvm
   sudo
   z
@@ -382,4 +382,15 @@ to_low_bitrate() {
     echo "ffmpeg not found." >&2
     return 1
   fi
+}
+
+list_videos() {
+  for file in *; do 
+      if [ "$file" != "input.txt" ]; then
+        echo "file '$file'"
+      fi
+  done > input.txt
+  cat input.txt
+  # for file in *; do echo "file '$file'"; done > input.txt
+  # sed '$d' input.txt > temp.txt && mv temp.txt input.txt
 }
