@@ -394,3 +394,80 @@ list_videos() {
   # for file in *; do echo "file '$file'"; done > input.txt
   # sed '$d' input.txt > temp.txt && mv temp.txt input.txt
 }
+
+validate_trim_video_params() {
+    if [[ $# -lt 3 ]]; then
+        echo "Usage: trim_video <input_file> <output_file> <start_time> [end_time]"
+        return 1
+    fi
+
+    # Set variables globally for reuse in caller functions
+    tv_input_file=$1
+    tv_output_file=$2
+    tv_start_time=$3
+    tv_end_time=$4
+}
+
+trim_video_264() {
+    validate_trim_video_params "$@"
+    if [[ $? -ne 0 ]]; then return 1; fi
+    if [[ -z $tv_end_time ]]; then
+        ffmpeg -i "$tv_input_file" -ss "$tv_start_time" -c:v libx264 -crf 24 -preset slow -c:a aac "$tv_output_file"
+    else
+        ffmpeg -i "$tv_input_file" -ss "$tv_start_time" -to "$tv_end_time" -c:v libx264 -crf 24 -preset slow -c:a aac "$tv_output_file"
+    fi
+}
+
+trim_video_h264_gpu() {
+    validate_trim_video_params "$@"
+    if [[ $? -ne 0 ]]; then return 1; fi
+    if [[ -z $tv_end_time ]]; then
+        ffmpeg -i "$tv_input_file" -ss "$tv_start_time" -c:v h264_videotoolbox -b:v 4000k -c:a aac "$tv_output_file"
+    else
+        ffmpeg -i "$tv_input_file" -ss "$tv_start_time" -to "$tv_end_time" -c:v h264_videotoolbox -b:v 4000k -c:a aac "$tv_output_file"
+    fi
+}
+
+trim_video_hevc() {
+    validate_trim_video_params "$@"
+    if [[ $? -ne 0 ]]; then return 1; fi
+    if [[ -z $tv_end_time ]]; then
+        ffmpeg -i "$tv_input_file" -ss "$tv_start_time" -c:v libx265 -crf 28 -preset slow -c:a aac "$tv_output_file"
+    else
+        ffmpeg -i "$tv_input_file" -ss "$tv_start_time" -to "$tv_end_time" -c:v libx265 -crf 28 -preset slow -c:a aac -tag:v hvc1 "$tv_output_file"
+    fi
+}
+
+trim_video_hevc_gpu() {
+    validate_trim_video_params "$@"
+    if [[ $? -ne 0 ]]; then return 1; fi
+    if [[ -z $tv_end_time ]]; then
+        ffmpeg -i "$tv_input_file" -ss "$tv_start_time" -c:v hevc_videotoolbox -b:v 4000k -c:a aac "$tv_output_file"
+    else
+        ffmpeg -i "$tv_input_file" -ss "$tv_start_time" -to "$tv_end_time" -c:v hevc_videotoolbox -b:v 4000k -c:a aac -tag:v hvc1 "$tv_output_file"
+    fi
+}
+
+join_videos() {
+    # Check if at least two files are provided
+    if [[ $# -lt 2 ]]; then
+        echo "Usage: join_videos <output_file> <input_file1> <input_file2> [<input_file3> ...]"
+        return 1
+    fi
+    echo "$@"
+    local output_file=$1
+    shift  # Remove the first argument (output file)
+    local temp_file="file_list.txt"
+    echo "$@"
+    # Create a temporary file to list all input videos
+    : > "$temp_file"  # Clear the file if it exists
+    for video in "$@"; do
+        # echo "file '$video'" >> "$temp_file"
+        # Escape file paths with spaces and special characters correctly
+        printf "file '%s'\n" "$video" >> "$temp_file"
+    done
+    # Run ffmpeg to join the videos using the concat demuxer
+    ffmpeg -f concat -safe 0 -i "$temp_file" -c:v copy -c:a copy "$output_file"
+    # Clean up the temporary file
+    rm "$temp_file"
+}
