@@ -92,7 +92,7 @@ alias vi="nvim"
 alias vimrc="nvim ~/.config/nvim/init.vim"
 alias zshrc="nvim ~/.zshrc"
 alias zshrcc="code ~/.zshrc"
-alias dl="youtube-dl --proxy $MY_PROXY"
+alias dl="yt-dlp --proxy $MY_PROXY"
 
 alias gtc="cd ~/.config"
 alias gtl="cd ~/.local"
