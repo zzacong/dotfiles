@@ -15,13 +15,14 @@ set shell zsh
 # Custom Functions
 #
 cmd open ${{
-  case $(file --mime-type $f -b) in
-    text/*) $EDITOR $fx;;
-         *) for f in $fx; do open $f > /dev/null 2> /dev/null & done;;
+  case $(file --mime-type -Lb $f) in
+    text/*) nvim $fx;;
+    application/json) nvim $fx;;
+    *) for f in $fx; do open $f > /dev/null 2> /dev/null & done;;
   esac
 }}
 
-cmd mkdir %{{
+cmd mkdir ${{
   mkdir -p -- "$@"
   lf -remote "send $id select '$@'"
 }}
@@ -49,7 +50,7 @@ map m			# mark-save
 map "'"		# mark-load
 map `"`		# mark-remove
 map e			# editor "$f"
- 
+
 # File Openers
 map ee $$EDITOR "$f"
 map ev $$VISUAL "$f"
