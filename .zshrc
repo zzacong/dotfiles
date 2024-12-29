@@ -28,11 +28,6 @@ ZSH_THEME="spaceship-prompt/spaceship"
 
 COMPLETION_WAITING_DOTS="true"
 
-## Spaceship Prompt Options
-SPACESHIP_PACKAGE_SHOW=true
-SPACESHIP_TIME_SHOW=true
-SPACESHIP_IBMCLOUD_SYMBOL="☁️  "
-
 plugins=(
   deno
   # docker
