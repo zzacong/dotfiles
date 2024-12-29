@@ -1,21 +1,29 @@
+theme = vesper
+theme = zzcolor
+
 background-blur-radius = 10
 background-opacity = 0.9
-# cursor-style = block_hollow
+
+#cursor-style = block_hollow
+
 font-family = GeistMono Nerd Font
-# font-family = CaskaydiaCove Nerd Font
-# font-family = FiraCode Nerd Font
-# font-family = Geist Mono
+#font-family = CaskaydiaCove Nerd Font
+#font-family = FiraCode Nerd Font
+#font-family = Geist Mono
 font-feature = -calt
 font-feature = -dlig
 font-feature = -liga
 font-size = 15
-keybind = global:alt+one=toggle_quick_terminal
-keybind = super+backspace=text:\x15
+
 quick-terminal-position = top
 quick-terminal-screen = mouse
+
 shell-integration-features = no-cursor
-theme = vesper
+
 window-height = 25
 window-inherit-font-size = false
-# window-inherit-working-directory = false
+#window-inherit-working-directory = false
 window-width = 100
+
+keybind = global:alt+one=toggle_quick_terminal
+keybind = super+backspace=text:\x15
