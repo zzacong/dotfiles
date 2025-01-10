@@ -23,7 +23,7 @@ shell-integration-features = no-cursor
 window-height = 25
 window-inherit-font-size = false
 #window-inherit-working-directory = false
-window-width = 100
+window-width = 125
 
-keybind = global:alt+one=toggle_quick_terminal
+# keybind = global:alt+one=toggle_quick_terminal
 keybind = super+backspace=text:\x15
