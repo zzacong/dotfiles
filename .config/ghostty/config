@@ -1,5 +1,6 @@
 theme = vesper
-theme = zzcolor
+#theme = zzcolor
+#theme = Raycast_Dark
 
 background-blur-radius = 10
 background-opacity = 0.9
