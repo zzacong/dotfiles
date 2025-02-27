@@ -18,6 +18,7 @@ font-size = 15
 
 quick-terminal-position = top
 quick-terminal-screen = mouse
+macos-non-native-fullscreen = visible-menu
 
 shell-integration-features = no-cursor
 
@@ -26,5 +27,5 @@ window-inherit-font-size = false
 #window-inherit-working-directory = false
 window-width = 125
 
-# keybind = global:alt+one=toggle_quick_terminal
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
 keybind = super+backspace=text:\x15
