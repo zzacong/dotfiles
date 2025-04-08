@@ -96,6 +96,7 @@ alias gtc="cd ~/.config"
 alias gtl="cd ~/.local"
 alias gtp="cd ~/Developer/project"
 alias gts="cd ~/Developer/sandbox"
+alias gtd="cd ~/Desktop"
 
 ## LF
 # 

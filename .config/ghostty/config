@@ -1,4 +1,5 @@
-theme = vesper
+theme = catppuccin-mocha
+#theme = vesper
 #theme = zzcolor
 #theme = Raycast_Dark
 
