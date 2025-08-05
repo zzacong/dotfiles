@@ -383,6 +383,48 @@ to_low_bitrate() {
   fi
 }
 
+speed_up_video() {
+  if command -v "ffmpeg" >/dev/null 2>&1; then
+    while getopts ":i:o:s:" opt; do
+      case $opt in
+      i)
+        local arg_i="$OPTARG"
+        ;;
+      o)
+        local arg_o="$OPTARG"
+        ;;
+      s)
+        local arg_s="$OPTARG"
+        ;;
+      \?)
+        echo "Invalid option: -$OPTARG" >&2
+        return 1
+        ;;
+      :)
+        echo "Option -$OPTARG requires an argument." >&2
+        return 1
+        ;;
+      esac
+    done
+    if [[ -n "$arg_i" && -f "$arg_i" ]]; then
+      local filename_no_ext="${arg_i%.*}"
+      local video_output="${filename_no_ext}_sped_up.mp4"
+    else
+      echo "'${arg_i:-<no name>}' does not exist." >&2
+      return 1
+    fi
+    local speed_factor="${arg_s:-2}"
+    local pts_value=$(echo "scale=3; 1/$speed_factor" | bc -l)
+    echo "Input: $arg_i"
+    echo "Output: ${arg_o:-$video_output}"
+    echo "Speed: ${speed_factor}x"
+    ffmpeg -i "$arg_i" -vf "setpts=${pts_value}*PTS" -af "atempo=${speed_factor}" "${arg_o:-$video_output}"
+  else
+    echo "ffmpeg not found." >&2
+    return 1
+  fi
+}
+
 list_videos() {
   for file in *; do 
       if [ "$file" != "input.txt" ]; then
