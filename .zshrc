@@ -236,8 +236,8 @@ alias htdocs="cd $HOME/.bitnami/stackman/machines/xampp/volumes/root/htdocs"
 
 ## Fauna
 # 
-FAUNA_AC_ZSH_SETUP_PATH="$HOME/Library/Caches/fauna-shell/autocomplete/zsh_setup"
-[ -f $FAUNA_AC_ZSH_SETUP_PATH ] && source $FAUNA_AC_ZSH_SETUP_PATH # fauna shell autocomplete
+# FAUNA_AC_ZSH_SETUP_PATH="$HOME/Library/Caches/fauna-shell/autocomplete/zsh_setup"
+# [ -f $FAUNA_AC_ZSH_SETUP_PATH ] && source $FAUNA_AC_ZSH_SETUP_PATH # fauna shell autocomplete
 
 ## Created by `pipx` on 2021-09-09 05:14:45
 # 
@@ -254,6 +254,9 @@ if command -v "fnm" &> /dev/null; then
   alias f16="fnm use 16"
 fi
 
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/zacong/.lmstudio/bin"
+# End of LM Studio CLI section
 
 ## Add PATHs
 # 

@@ -15,7 +15,7 @@
 # @raycast.packageName Raycast Scripts
 # @raycast.author Zac Ong
 
-ip_addr=$(curl -s ifconfig.me/ip)
+ip_addr=$(curl -4 -s ifconfig.me/ip)
 
 echo $ip_addr | pbcopy
 
