@@ -1,7 +1,9 @@
 theme = catppuccin-mocha
 #theme = vesper
 #theme = zzcolor
-#theme = Raycast_Dark
+theme = desert
+#theme = Monokai Pro
+#theme = NvimDark
 
 background-blur-radius = 10
 background-opacity = 0.9
