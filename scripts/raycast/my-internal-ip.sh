@@ -8,7 +8,7 @@
 # Required parameters:
 # @raycast.schemaVersion 1
 # @raycast.title My internal IP
-# @raycast.mode fullOutput
+# @raycast.mode compact
 #
 # Optional parameters:
 # @raycast.icon 🛜
