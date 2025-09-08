@@ -15,7 +15,9 @@
 # @raycast.packageName Raycast Scripts
 # @raycast.author Zac Ong
 
-result=$(ifconfig | rg -oe "\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b")
+# result=$(ifconfig | rg -oe "\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b")
+result=$(ifconfig en0 | grep "inet " | awk '{print $2}')
+
+echo $result | pbcopy
 
 echo $result
-
