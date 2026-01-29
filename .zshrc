@@ -496,9 +496,9 @@ trim_video_h264_gpu() {
   validate_trim_video_params "$@"
   if [[ $? -ne 0 ]]; then return 1; fi
   if [[ -z $tv_end_time ]]; then
-    ffmpeg -i "$tv_input_file" -ss "$tv_start_time" -c:v h264_videotoolbox -b:v 4000k -c:a aac -c:s copy "$tv_output_file"
+    ffmpeg -i "$tv_input_file" -ss "$tv_start_time" -c:v h264_videotoolbox -b:v 0 -crf 28 -c:a aac -c:s copy "$tv_output_file"
   else
-    ffmpeg -i "$tv_input_file" -ss "$tv_start_time" -to "$tv_end_time" -c:v h264_videotoolbox -b:v 4000k -c:a aac -c:s copy "$tv_output_file"
+    ffmpeg -i "$tv_input_file" -ss "$tv_start_time" -to "$tv_end_time" -c:v h264_videotoolbox -b:v 0 -crf 28 -c:a aac -c:s copy "$tv_output_file"
   fi
 }
 
@@ -516,9 +516,9 @@ trim_video_hevc_gpu() {
   validate_trim_video_params "$@"
   if [[ $? -ne 0 ]]; then return 1; fi
   if [[ -z $tv_end_time ]]; then
-    ffmpeg -i "$tv_input_file" -ss "$tv_start_time" -c:v hevc_videotoolbox -b:v 4000k -c:a aac -c:s copy -tag:v hvc1 "$tv_output_file"
+    ffmpeg -i "$tv_input_file" -ss "$tv_start_time" -c:v hevc_videotoolbox -b:v 0 -crf 28 -c:a aac -c:s copy -tag:v hvc1 "$tv_output_file"
   else
-    ffmpeg -i "$tv_input_file" -ss "$tv_start_time" -to "$tv_end_time" -c:v hevc_videotoolbox -b:v 4000k -c:a aac -c:s copy -tag:v hvc1 "$tv_output_file"
+    ffmpeg -i "$tv_input_file" -ss "$tv_start_time" -to "$tv_end_time" -c:v hevc_videotoolbox -b:v 0 -crf 28 -c:a aac -c:s copy -tag:v hvc1 "$tv_output_file"
   fi
 }
 
@@ -527,10 +527,21 @@ encode_video_hevc() {
       echo "Usage: encode_video_hevc <input_file> <output_file>"
       return 1
   fi
-  local tag_input_file=$1 
-  local tag_output_file=$2 
+  local tag_input_file=$1
+  local tag_output_file=$2
   if [[ $? -ne 0 ]]; then return 1; fi
   ffmpeg -i "$tag_input_file" -c:v libx265 -crf 28 -preset slow -c:a copy -c:s copy -tag:v hvc1 "$tag_output_file"
+}
+
+encode_video_hevc_gpu() {
+  if [[ $# -lt 2 ]]; then
+      echo "Usage: encode_video_hevc_gpu <input_file> <output_file>"
+      return 1
+  fi
+  local tag_input_file=$1
+  local tag_output_file=$2
+  if [[ $? -ne 0 ]]; then return 1; fi
+  ffmpeg -i "$tag_input_file" -c:v hevc_videotoolbox -b:v 0 -crf 28 -c:a copy -c:s copy -tag:v hvc1 "$tag_output_file"
 }
 
 join_videos() {
