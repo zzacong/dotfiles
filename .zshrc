@@ -184,7 +184,7 @@ alias pnpx="pnpm dlx"
 corepackup() {
   corepack enable
   corepack prepare pnpm@latest --activate;
-  corepack prepare yarn@stable --activate;
+  # corepack prepare yarn@stable --activate;
 }
 
 ## ANDROID_SDK
